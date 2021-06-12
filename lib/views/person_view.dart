@@ -51,16 +51,17 @@ class _PersonViewState extends State<PersonView> {
   @override
   void initState() {
     super.initState();
-    setupPerson();
+    //setupPerson();
   }
 
   @override
   Widget build(BuildContext context) {
 
-    // setState(() {
-    //   personUrl = (ModalRoute.of(context).settings.arguments as Map)['url'];
-    //   print(personUrl);
-    // });
+    setState(() {
+       personUrl = ModalRoute.of(context).settings.arguments;
+       //print(personUrl);
+    });
+    setupPerson();
 
 
 

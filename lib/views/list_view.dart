@@ -12,30 +12,50 @@ class _ListItemViewState extends State<ListItemView> {
   List<String> items = [];
   String listUrl = 'https://swapi.dev/api/people/?page=';
   String label = 'name';
+  List<Map> mapList = [];
+  String argument = '' ;
 
 
 
   void setupList() async {
     GetData getData = GetData();
-    print("SetupList started...");
-    List<Map> mapList =  await getData.getListOfDataFromAllPages(listUrl);
-    print("mapList calculated...");
+    //print("SetupList started...");
+    mapList =  await getData.getListOfDataFromAllPages(listUrl);
+    //print("mapList calculated...");
 
     setState(() {
-      print("setState started...");
+      //print("setState started...");
       items = getData.getDataByLabel(mapList, label);
     });
-    print("SetupList ended...");
+    //print("SetupList ended...");
   }
 
   @override
   void initState() {
     super.initState();
-    setupList();
+    //setupList();
   }
 
   @override
   Widget build(BuildContext context) {
+
+    setState(() {
+      argument =  ModalRoute.of(context).settings.arguments ;
+      listUrl = 'https://swapi.dev/api/' + argument + '/?page=';
+
+      switch(argument) {
+        case "films": {
+            label = 'title';
+        }
+        break;
+        default: {
+          label = 'name';
+        }
+        break;
+      }
+
+    });
+    setupList();
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
@@ -72,7 +92,34 @@ class _ListItemViewState extends State<ListItemView> {
                           children: [
                             FlatButton(
                                 onPressed: (){
-                                  Navigator.pushNamed(context,'/person_view');
+                                  switch(argument) {
+                                    case "people":
+                                      {
+                                        Navigator.pushNamed(
+                                            context, '/person_view',
+                                            arguments: mapList[items.indexOf(
+                                                element)]['url']);
+                                      }
+                                      break;
+
+                                    case "planets":
+                                      {
+                                        Navigator.pushNamed(
+                                            context, '/planet_view',
+                                            arguments: mapList[items.indexOf(
+                                                element)]['url']);
+                                      }
+                                      break;
+
+                                    case "films":
+                                      {
+                                        Navigator.pushNamed(
+                                            context, '/movie_view',
+                                            arguments: mapList[items.indexOf(
+                                                element)]['url']);
+                                      }
+                                      break;
+                                  }
                                   //Navigator.pushNamed(context, MaterialPageRoute(builder: (context) => PersonView('http://swapi.dev/api/people/7/')));
                                 }, //TODO logika do przycisku
                                 child: Row(

@@ -43,11 +43,18 @@ class _MovieViewState extends State<MovieView> {
   @override
   void initState() {
     super.initState();
-    setupMovie();
+    //setupMovie();
   }
 
   @override
   Widget build(BuildContext context) {
+
+    setState(() {
+      movieUrl = ModalRoute.of(context).settings.arguments;
+    });
+
+    setupMovie();
+
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(

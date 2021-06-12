@@ -29,7 +29,7 @@ class _PlanetViewState extends State<PlanetView> {
 
     setState(() {
       name = planet['name'];
-      terrain = planet['terrain'];
+      terrain = planet['terrain'] ;
       rotation_period = planet['rotation_period'];
       orbital_period = planet['orbital_period'];
       climate = planet['climate'];
@@ -44,11 +44,18 @@ class _PlanetViewState extends State<PlanetView> {
   @override
   void initState() {
     super.initState();
-    setupPlanet();
+    //setupPlanet();
   }
 
   @override
   Widget build(BuildContext context) {
+
+    setState(() {
+      planetUrl = ModalRoute.of(context).settings.arguments;
+    });
+
+    setupPlanet();
+
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
@@ -101,26 +108,22 @@ class _PlanetViewState extends State<PlanetView> {
                     ],
                   ),
                   SizedBox(height: 30),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      oneColumn('NAME', name,CrossAxisAlignment.start),
-                      oneColumn('TERRAIN',terrain ,CrossAxisAlignment.end),
-                    ],
-                  ),
+                  oneColumn('NAME', name,CrossAxisAlignment.start),
+                  SizedBox(height: 30),
+                  oneColumn('TERRAIN',terrain ,CrossAxisAlignment.start),
                   SizedBox(height: 30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       oneColumn('ROTATION PERIOD', rotation_period,CrossAxisAlignment.start),
-                      oneColumn('ORBITAL PERIOD', orbital_period,CrossAxisAlignment.end),
+                      oneColumn('CLIMATE', climate,CrossAxisAlignment.end),
                     ],
                   ),
                   SizedBox(height: 30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      oneColumn('CLIMATE', climate,CrossAxisAlignment.start),
+                      oneColumn('ORBITAL PERIOD', orbital_period,CrossAxisAlignment.start),
                       oneColumn('GRAVITY', gravity,CrossAxisAlignment.end)
                     ],
                   ),

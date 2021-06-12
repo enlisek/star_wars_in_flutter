@@ -64,13 +64,13 @@ class GetData {
     while(next) {
       response = await get(Uri.parse(secureUrl+i.toString()));
       List<dynamic> json = jsonDecode(response.body)['results'];
-      print(json[0].runtimeType);
+      //print(json[0].runtimeType);
       for(var item in json) {
         //print(item.runtimeType);
         maps.add(item as Map);
       }
-      print(maps);
-      print(i);
+      //print(maps);
+      //print(i);
       if(jsonDecode(response.body)['next']!=null) {
           i++;
       }

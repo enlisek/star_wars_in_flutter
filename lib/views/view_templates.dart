@@ -16,7 +16,7 @@ Widget oneRow(content) {
   return Text(
     content,
     style: TextStyle(
-        fontSize: 23,
+        fontSize: 20,
         color: Colors.amberAccent[200],
         fontWeight: FontWeight.bold
     ),
