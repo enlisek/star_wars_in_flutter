@@ -56,6 +56,14 @@ class _PersonViewState extends State<PersonView> {
 
   @override
   Widget build(BuildContext context) {
+
+    // setState(() {
+    //   personUrl = (ModalRoute.of(context).settings.arguments as Map)['url'];
+    //   print(personUrl);
+    // });
+
+
+
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(

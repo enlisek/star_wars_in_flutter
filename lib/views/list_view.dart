@@ -71,7 +71,10 @@ class _ListItemViewState extends State<ListItemView> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             FlatButton(
-                                onPressed: (){}, //TODO logika do przycisku
+                                onPressed: (){
+                                  Navigator.pushNamed(context,'/person_view');
+                                  //Navigator.pushNamed(context, MaterialPageRoute(builder: (context) => PersonView('http://swapi.dev/api/people/7/')));
+                                }, //TODO logika do przycisku
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
