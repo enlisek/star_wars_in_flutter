@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1000915399382",
+    "firebase_url": "https://star-wars-flutter-default-rtdb.firebaseio.com",
+    "project_id": "star-wars-flutter",
+    "storage_bucket": "star-wars-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000915399382:android:484d6e1534e707468a8f77",
+        "android_client_info": {
+          "package_name": "com.example.star_wars_in_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1000915399382-fstrq2jidm7860k0ouegvngho026ed6b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRZB9p6kpivq2yKzUb4PGgCQCeBf9131k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1000915399382-fstrq2jidm7860k0ouegvngho026ed6b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

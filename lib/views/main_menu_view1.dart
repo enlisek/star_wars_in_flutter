@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:star_wars_in_flutter/services/auth.dart';
 import 'package:star_wars_in_flutter/views/view_templates.dart';
 
-class MainMenu extends StatefulWidget{
-  @override
-  _MainMenuState createState() =>  _MainMenuState();
-}
-
-
-class  _MainMenuState extends State<MainMenu> {
-  final AuthService _authService = AuthService();
+class MainMenu1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,15 +15,6 @@ class  _MainMenuState extends State<MainMenu> {
               fontWeight: FontWeight.bold
           ),
         ),
-        actions: <Widget>[ElevatedButton.icon(
-          icon: Icon(Icons.account_box_outlined, color:Colors.yellow,),
-          onPressed:() async{
-            await _authService.signOut();
-            // Navigator.pushReplacementNamed(context, '/login');
-          },
-          label: Text('Logout',style: TextStyle(color: Colors.yellow),),
-        )
-        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -97,55 +80,6 @@ class  _MainMenuState extends State<MainMenu> {
                     padding: const EdgeInsets.all(14.0),
                     child: oneRow('PLANETS'),
                   )
-                ),
-
-                SizedBox(height: 40),
-                FlatButton(onPressed: () {
-                  Navigator.pushNamed(context,'/list_view',arguments: 'people');
-                } , color: Colors.grey[800],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      side: BorderSide(
-                        color: Colors.grey[900].withOpacity(0.1),
-                        width: 3,
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(14.0),
-                      child: oneRow('FAVOURITE PEOPLE'),
-                    )
-                ),
-                SizedBox(height: 20),
-                FlatButton(onPressed: () {
-                  Navigator.pushNamed(context,'/list_view',arguments: 'people');
-                } , color: Colors.grey[800],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      side: BorderSide(
-                        color: Colors.grey[900].withOpacity(0.1),
-                        width: 3,
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(14.0),
-                      child: oneRow('FAVOURITE FILMS'),
-                    )
-                ),
-                SizedBox(height: 20),
-                FlatButton(onPressed: () {
-                  Navigator.pushNamed(context,'/list_view',arguments: 'people');
-                } , color: Colors.grey[800],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      side: BorderSide(
-                        color: Colors.grey[900].withOpacity(0.1),
-                        width: 3,
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(14.0),
-                      child: oneRow('FAVOURITE PLANETS'),
-                    )
                 ),
               ]
           ),
