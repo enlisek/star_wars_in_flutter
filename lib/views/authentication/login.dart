@@ -18,6 +18,9 @@ class _SignInState extends State<SignIn> {
 
   String mail;
   String password;
+  String test;
+
+
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
