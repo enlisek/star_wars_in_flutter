@@ -25,18 +25,22 @@ class _RegisterState extends State<Register> {
 
         backgroundColor:  Colors.grey[900],
         appBar: AppBar(
-          backgroundColor: Colors.yellow[600],
-          title: Text('Register'),
+          backgroundColor: Colors.yellow,
+          title: Text('Register', style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold),
+          ),
           actions: <Widget>[
             ElevatedButton.icon(
 
-              icon: Icon(Icons.account_box_outlined, color: Colors.black,),
+              icon: Icon(Icons.account_box_outlined, color: Colors.yellow,),
               onPressed:(){
                 Navigator.pushReplacementNamed(context, '/login');
               },
-              label: Text('Login',style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold)),
+              label: Text('Login',style: TextStyle(color: Colors.yellow)),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.grey[800])
+                )
             )
           ],
 
@@ -52,11 +56,11 @@ class _RegisterState extends State<Register> {
                   children: [
 
                     TextFormField(
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.yellow),
                       decoration: const InputDecoration(
-                        icon: Icon(Icons.person, color: Colors.white),
+                        icon: Icon(Icons.person, color: Colors.yellow),
                         labelText: 'Name *',
-                        labelStyle:  TextStyle(color: Colors.white),
+                        labelStyle:  TextStyle(color: Colors.yellow),
                       ),
                       onChanged: (val){
                         setState(() {
@@ -68,11 +72,11 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 20.0,),
                     TextFormField(
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.yellow),
                       decoration: const InputDecoration(
-                        icon: Icon(Icons.email_outlined, color: Colors.white),
+                        icon: Icon(Icons.email_outlined, color: Colors.yellow),
                         labelText: 'Email *',
-                        labelStyle:  TextStyle(color: Colors.white),
+                        labelStyle:  TextStyle(color: Colors.yellow),
                       ),
                       onChanged: (val){
                         setState(() {
@@ -88,12 +92,12 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 20.0,),
                     TextFormField(
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.yellow),
                       obscureText: true,
                       decoration: const InputDecoration(
                           focusedBorder: InputBorder.none,
-                          labelStyle:  TextStyle(color: Colors.white),
-                          icon: Icon(Icons.vpn_key, color: Colors.white,),
+                          labelStyle:  TextStyle(color: Colors.yellow),
+                          icon: Icon(Icons.vpn_key, color: Colors.yellow,),
                           labelText: 'Password *'
                       ),
                       onChanged: (val){
@@ -109,12 +113,12 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 20.0,),
                     TextFormField(
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.yellow),
                       obscureText: true,
                       decoration: const InputDecoration(
                           focusedBorder: InputBorder.none,
-                          labelStyle:  TextStyle(color: Colors.white),
-                          icon: Icon(Icons.vpn_key, color: Colors.white,),
+                          labelStyle:  TextStyle(color: Colors.yellow),
+                          icon: Icon(Icons.vpn_key, color: Colors.yellow,),
                           labelText: 'Repeat password *'
                       ),
                       onChanged: (val){
@@ -133,7 +137,8 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 20.0,),
                     ElevatedButton(
-                      child: Text('Register'),
+                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey[800])),
+                      child: Text('Register', style: TextStyle(color: Colors.yellow, fontSize: 20),),
                       onPressed: () async {
                         if(_formKey.currentState.validate()){
                           dynamic res =await _authService.register( mail, password,name);

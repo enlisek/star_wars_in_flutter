@@ -8,6 +8,7 @@ import 'list_view.dart';
 import 'main_menu_view.dart';
 import 'movie_view.dart';
 
+
 class Home extends StatefulWidget {
 
 
@@ -25,7 +26,7 @@ class _HomeState extends State<Home> {
         '/planet_view' : (context) => PlanetView(),
         '/movie_view' : (context) => MovieView(),
         '/list_view' : (context) => ListItemView(),
-        '/main_menu' : (context) => MainMenu(),
+        '/main_menu' : (context) => MainMenu()
 
       },
     );
