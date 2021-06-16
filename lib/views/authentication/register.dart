@@ -13,7 +13,7 @@ class _RegisterState extends State<Register> {
 
 
   final AuthService _authService= AuthService();
-
+  String test;
   String name;
   String mail;
   String password;

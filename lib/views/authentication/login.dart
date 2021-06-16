@@ -15,6 +15,7 @@ class _SignInState extends State<SignIn> {
 
   final AuthService _authService= AuthService();
 
+  String test1;
 
   String mail;
   String password;
