@@ -120,17 +120,13 @@ class _PlanetViewState extends State<PlanetView> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       oneColumn('ROTATION PERIOD', rotation_period,CrossAxisAlignment.start),
-                      oneColumn('CLIMATE', climate,CrossAxisAlignment.end),
+                      oneColumn('ORBITAL PERIOD', orbital_period,CrossAxisAlignment.end)
                     ],
                   ),
                   SizedBox(height: 30),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      oneColumn('ORBITAL PERIOD', orbital_period,CrossAxisAlignment.start),
-                      oneColumn('GRAVITY', gravity,CrossAxisAlignment.end)
-                    ],
-                  ),
+                  oneColumn('CLIMATE', climate,CrossAxisAlignment.start),
+                  SizedBox(height: 30),
+                  oneColumn('GRAVITY', gravity,CrossAxisAlignment.start),
                   SizedBox(height: 30),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

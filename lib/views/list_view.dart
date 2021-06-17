@@ -40,22 +40,26 @@ class _ListItemViewState extends State<ListItemView> {
   Widget build(BuildContext context) {
 
     setState(() {
-      argument =  ModalRoute.of(context).settings.arguments ;
-      listUrl = 'https://swapi.dev/api/' + argument + '/?page=';
+      if(items.length == 0) {
+        argument =  ModalRoute.of(context).settings.arguments ;
+        listUrl = 'https://swapi.dev/api/' + argument + '/?page=';
 
-      switch(argument) {
-        case "films": {
+        switch(argument) {
+          case "films": {
             label = 'title';
+          }
+          break;
+          default: {
+            label = 'name';
+          }
+          break;
         }
-        break;
-        default: {
-          label = 'name';
-        }
-        break;
+        setupList();
       }
 
+
     });
-    setupList();
+
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(

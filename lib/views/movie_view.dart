@@ -26,8 +26,8 @@ class _MovieViewState extends State<MovieView> {
     List<Map> mapsCharacters = await getData.getListOfData(movie['characters']);
     List<Map> mapsPlanets = await getData.getListOfData(movie['planets']);
 
-    List<Map> proba =  await getData.getListOfDataFromAllPages('https://swapi.dev/api/planets/?page=');
-    print(proba);
+    // List<Map> proba =  await getData.getListOfDataFromAllPages('https://swapi.dev/api/planets/?page=');
+    // print(proba);
 
     setState(() {
       title = movie['title'];
@@ -54,7 +54,6 @@ class _MovieViewState extends State<MovieView> {
         movieUrl = ModalRoute.of(context).settings.arguments;
         setupMovie();
       }
-
     });
 
 
@@ -81,7 +80,7 @@ class _MovieViewState extends State<MovieView> {
             ),
           ),
           color: Colors.grey[800],
-          margin: EdgeInsets.fromLTRB(20,30,20,30),
+          margin: EdgeInsets.fromLTRB(16,20,16,20),
           child: Padding(
             padding: EdgeInsets.all(20),
             child: Column(
