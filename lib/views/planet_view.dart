@@ -51,10 +51,14 @@ class _PlanetViewState extends State<PlanetView> {
   Widget build(BuildContext context) {
 
     setState(() {
-      planetUrl = ModalRoute.of(context).settings.arguments;
+      if(terrain == '') {
+        planetUrl = ModalRoute.of(context).settings.arguments;
+        setupPlanet();
+      }
+
     });
 
-    setupPlanet();
+
 
     return Scaffold(
       backgroundColor: Colors.grey[900],

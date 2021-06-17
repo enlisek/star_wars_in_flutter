@@ -50,10 +50,14 @@ class _MovieViewState extends State<MovieView> {
   Widget build(BuildContext context) {
 
     setState(() {
-      movieUrl = ModalRoute.of(context).settings.arguments;
+      if(director == '') {
+        movieUrl = ModalRoute.of(context).settings.arguments;
+        setupMovie();
+      }
+
     });
 
-    setupMovie();
+
 
     return Scaffold(
       backgroundColor: Colors.grey[900],

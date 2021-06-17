@@ -58,10 +58,14 @@ class _PersonViewState extends State<PersonView> {
   Widget build(BuildContext context) {
 
     setState(() {
-       personUrl = ModalRoute.of(context).settings.arguments;
-       //print(personUrl);
+      if(gender=='') {
+        personUrl = ModalRoute.of(context).settings.arguments;
+        //print(personUrl);
+        setupPerson();
+      }
+
     });
-    setupPerson();
+
 
 
 
