@@ -61,11 +61,17 @@ class _ListItemViewState extends State<ListItemView> {
               for (String k in data.value.keys) {
                 dynamic res = await data.value[k];
                 String id = res[child];
-                print(id);
-                print(id.length);
+                String id_user = id.substring(id.length-FirebaseAuth.instance.currentUser.uid.length);
+                print(id_user);
+                print(FirebaseAuth.instance.currentUser.uid);
+                if(id.substring(id.length-FirebaseAuth.instance.currentUser.uid.length)==FirebaseAuth.instance.currentUser.uid){
+                  itemsHelp.add(id.substring(0,id.length-FirebaseAuth.instance.currentUser.uid.length));
+                }
 
-                itemsHelp.add(id.substring(0,id.length-FirebaseAuth.instance.currentUser.uid.length));
 
+              }
+              if(itemsHelp.isEmpty){
+                itemsHelp.add("You have no favourites");
               }
            }
             else{
