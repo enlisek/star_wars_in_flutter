@@ -20,7 +20,8 @@ class _ListItemViewState extends State<ListItemView> {
 
 
   void setupList(bool isFav, String category) async {
-
+    GetData getData = GetData();
+    mapList =  await getData.getListOfDataFromAllPages(listUrl);
     //print("SetupList started...");
     final _dbTable = FirebaseDatabase.instance.reference().child(category);
     String child ='';
@@ -43,8 +44,7 @@ class _ListItemViewState extends State<ListItemView> {
     //print("mapList calculated...");
     print("setState started...");
         if(!isFav){
-          GetData getData = GetData();
-          mapList =  await getData.getListOfDataFromAllPages(listUrl);
+
           setState(() {
 
         items = getData.getDataByLabel(mapList, label);
