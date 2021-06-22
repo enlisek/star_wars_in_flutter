@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_in_flutter/services/get_data.dart';
 import 'package:star_wars_in_flutter/views/view_templates.dart';
-
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:toast/toast.dart';
 class MovieView extends StatefulWidget {
   @override
   _MovieViewState createState() => _MovieViewState();
@@ -48,7 +50,7 @@ class _MovieViewState extends State<MovieView> {
 
   @override
   Widget build(BuildContext context) {
-
+    final _dbTable = FirebaseDatabase.instance.reference().child('films');
     setState(() {
       if(director == '') {
         movieUrl = ModalRoute.of(context).settings.arguments;
@@ -94,16 +96,32 @@ class _MovieViewState extends State<MovieView> {
                         size: 70,
                       ),
                       FlatButton(
-                          onPressed: () {
-                            setState(() {
-                              //TODO trzeba dodawac warunek czy uzytkownik jest zalogowany
-                              //jesli nie to info zeby sie zalogowal
-                              //jesli tak to zmienia sie przycisk plus dodaje sie pozycja do firebase/ewentualnie usuwa
-                              isPressed = !isPressed;
-                            });
+                          onPressed: () async{
+                            if(FirebaseAuth.instance.currentUser != null){
+                              if(!isPressed && episode_id!="") {
+                                dynamic res = await _dbTable.push().set(
+                                    {
+                                      "episode_user_id": episode_id + FirebaseAuth.instance.currentUser
+                                          .uid
+                                    }).asStream();
+                                if (res == null) {
+                                  Toast.show("Adding unsuccessful", context,
+                                      gravity: Toast.CENTER);
+                                }
+                                else {
+                                  Toast.show("Added successfully", context,
+                                      gravity: Toast.CENTER);
+                                  isPressed = true;
+                                }
+                              }
+                              else if(isPressed && episode_id!=""){
+
+                              }
+                            }
+
                           },
                           child: Icon((isPressed) ? Icons.favorite : Icons.favorite_border,
-                              color: Colors.red,
+                              color: (episode_id=="")?Colors.grey:Colors.red,
                               size: 40
                           )
                       ),
