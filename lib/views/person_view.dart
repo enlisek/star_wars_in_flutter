@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_in_flutter/services/get_data.dart';
 import 'package:star_wars_in_flutter/views/view_templates.dart';
-
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:toast/toast.dart';
 
 class PersonView extends StatefulWidget {
   @override
@@ -35,6 +37,7 @@ class _PersonViewState extends State<PersonView> {
     //print(person['films']);
     //print(maps);
     //print(films);
+    final _dbTable = FirebaseDatabase.instance.reference().child('people');
     setState(() {
       name = person['name'];
       gender = person['gender'];
@@ -46,6 +49,16 @@ class _PersonViewState extends State<PersonView> {
       hair_color = person['hair_color'];
       films = getData.getDataByLabel(maps, 'title');
     });
+    if(FirebaseAuth.instance.currentUser!=null){
+      await _dbTable.orderByChild("person_user_id").equalTo(name + FirebaseAuth.instance.currentUser
+          .uid).once().then((DataSnapshot data){
+        setState(() {
+          isPressed = (data.value!=null);
+        });
+
+        print(isPressed);
+      });
+    }
   }
 
   @override
@@ -56,7 +69,7 @@ class _PersonViewState extends State<PersonView> {
 
   @override
   Widget build(BuildContext context) {
-
+    final _dbTable = FirebaseDatabase.instance.reference().child('people');
     setState(() {
       if(gender=='') {
         personUrl = ModalRoute.of(context).settings.arguments;
@@ -105,16 +118,51 @@ class _PersonViewState extends State<PersonView> {
                       size: 70,
                     ),
                     FlatButton(
-                        onPressed: () {
-                          setState(() {
-                            //TODO trzeba dodawac warunek czy uzytkownik jest zalogowany
-                            //jesli nie to info zeby sie zalogowal
-                            //jesli tak to zmienia sie przycisk plus dodaje sie pozycja do firebase/ewentualnie usuwa
-                            isPressed = !isPressed;
-                          });
+                        onPressed: () async {
+                          if(FirebaseAuth.instance.currentUser != null){
+                            if(!isPressed && gender!="") {
+                              dynamic res = await _dbTable.push().set(
+                                  {
+                                    "person_user_id": name+ FirebaseAuth.instance.currentUser
+                                        .uid
+                                  }).asStream();
+                              if (res == null) {
+                                Toast.show("Adding unsuccessful", context,
+                                    gravity: Toast.CENTER);
+                              }
+                              else {
+                                Toast.show("Added successfully", context,
+                                    gravity: Toast.CENTER);
+                                setState((){
+                                  isPressed = true;
+                                });
+                              }
+                            }
+                            else if(isPressed && gender!=""){
+                              await _dbTable.orderByChild("person_user_id").equalTo(name + FirebaseAuth.instance.currentUser
+                                  .uid).limitToFirst(1)
+                                  .once().then((DataSnapshot data){
+                                print(data.value.keys);
+                                String key = data.value.keys.toString();
+                                key = key.substring(1,key.length-1);
+                                print(key);
+                                _dbTable.child(key).remove();
+                                setState((){
+                                  isPressed = false;
+                                });
+                              });
+
+
+                            }
+                          }
+                          else{
+                            Toast.show("Create an account", context,
+                                gravity: Toast.CENTER);
+                          }
                         },
                         child: Icon((isPressed) ? Icons.favorite : Icons.favorite_border,
-                          color: Colors.red,
+                            color: (gender==""|| FirebaseAuth.instance.currentUser
+                                ==null)?Colors.grey:Colors.red,
                           size: 40
                         )
                     ),

@@ -43,16 +43,16 @@ class _MovieViewState extends State<MovieView> {
 
     });
     if(FirebaseAuth.instance.currentUser!=null){
+      await _dbTable.orderByChild("title_user_id").equalTo(title+ FirebaseAuth.instance.currentUser
+          .uid).once().then((DataSnapshot data){
+        setState(() {
+          isPressed = (data.value!=null);
+        });
 
+        print(isPressed);
+      });
     }
-    await _dbTable.orderByChild("episode_user_id").equalTo(episode_id + FirebaseAuth.instance.currentUser
-        .uid).once().then((DataSnapshot data){
-          setState(() {
-            isPressed = (data.value!=null);
-          });
 
-          print(isPressed);
-    });
 
 
   }
@@ -116,7 +116,7 @@ class _MovieViewState extends State<MovieView> {
                               if(!isPressed && episode_id!="") {
                                 dynamic res = await _dbTable.push().set(
                                     {
-                                      "episode_user_id": episode_id + FirebaseAuth.instance.currentUser
+                                      "title_user_id": title + FirebaseAuth.instance.currentUser
                                           .uid
                                     }).asStream();
                                 if (res == null) {
@@ -132,7 +132,85 @@ class _MovieViewState extends State<MovieView> {
                                 }
                               }
                               else if(isPressed && episode_id!=""){
-                                 await _dbTable.orderByChild("episode_user_id").equalTo(episode_id + FirebaseAuth.instance.currentUser
+                                await _dbTable.orderByChild("title_user_id").equalTo(title + FirebaseAuth.instance.currentUser
+                                    .uid).limitToFirst(1)
+                                    .once().then((DataSnapshot data){
+                                  print(data.value.keys);
+                                  String key = data.value.keys.toString();
+                                  key = key.substring(1,key.length-1);
+                                  print(key);
+                                  _dbTable.child(key).remove();
+                                  setState((){
+                                    isPressed = false;
+                                  });
+                                });
+
+
+                              }
+                            }
+                            else{
+                              Toast.show("Create an account", context,
+                                  gravity: Toast.CENTER);
+                            }                            if(FirebaseAuth.instance.currentUser != null){
+                              if(!isPressed && episode_id!="") {
+                                dynamic res = await _dbTable.push().set(
+                                    {
+                                      "title_user_id": title + FirebaseAuth.instance.currentUser
+                                          .uid
+                                    }).asStream();
+                                if (res == null) {
+                                  Toast.show("Adding unsuccessful", context,
+                                      gravity: Toast.CENTER);
+                                }
+                                else {
+                                  Toast.show("Added successfully", context,
+                                      gravity: Toast.CENTER);
+                                  setState((){
+                                    isPressed = true;
+                                  });
+                                }
+                              }
+                              else if(isPressed && episode_id!=""){
+                                await _dbTable.orderByChild("title_user_id").equalTo(title + FirebaseAuth.instance.currentUser
+                                    .uid).limitToFirst(1)
+                                    .once().then((DataSnapshot data){
+                                  print(data.value.keys);
+                                  String key = data.value.keys.toString();
+                                  key = key.substring(1,key.length-1);
+                                  print(key);
+                                  _dbTable.child(key).remove();
+                                  setState((){
+                                    isPressed = false;
+                                  });
+                                });
+
+
+                              }
+                            }
+                            else{
+                              Toast.show("Create an account", context,
+                                  gravity: Toast.CENTER);
+                            }                if(FirebaseAuth.instance.currentUser != null){
+                              if(!isPressed && episode_id!="") {
+                                dynamic res = await _dbTable.push().set(
+                                    {
+                                      "title_user_id": title + FirebaseAuth.instance.currentUser
+                                          .uid
+                                    }).asStream();
+                                if (res == null) {
+                                  Toast.show("Adding unsuccessful", context,
+                                      gravity: Toast.CENTER);
+                                }
+                                else {
+                                  Toast.show("Added successfully", context,
+                                      gravity: Toast.CENTER);
+                                  setState((){
+                                    isPressed = true;
+                                  });
+                                }
+                              }
+                              else if(isPressed && episode_id!=""){
+                                 await _dbTable.orderByChild("title_user_id").equalTo(episode_id + FirebaseAuth.instance.currentUser
                                     .uid).limitToFirst(1)
                                 .once().then((DataSnapshot data){
                                       print(data.value.keys);
@@ -148,10 +226,14 @@ class _MovieViewState extends State<MovieView> {
 
                               }
                             }
-
+                            else{
+                              Toast.show("Create an account", context,
+                                  gravity: Toast.CENTER);
+                            }
                           },
                           child: Icon((isPressed) ? Icons.favorite : Icons.favorite_border,
-                              color: (episode_id=="")?Colors.grey:Colors.red,
+                              color: (episode_id==""|| FirebaseAuth.instance.currentUser
+                                  ==null)?Colors.grey:Colors.red,
                               size: 40
                           )
                       ),

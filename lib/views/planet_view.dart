@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_in_flutter/services/get_data.dart';
 import 'package:star_wars_in_flutter/views/view_templates.dart';
-
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:toast/toast.dart';
 class PlanetView extends StatefulWidget {
   @override
   _PlanetViewState createState() => _PlanetViewState();
@@ -26,7 +28,7 @@ class _PlanetViewState extends State<PlanetView> {
     Map planet = await getData.getData(planetUrl);
     List<Map> mapsFilms = await getData.getListOfData(planet['films']);
     List<Map> mapsResidents = await getData.getListOfData(planet['residents']);
-
+    final _dbTable = FirebaseDatabase.instance.reference().child('planets');
     setState(() {
       name = planet['name'];
       terrain = planet['terrain'] ;
@@ -35,10 +37,21 @@ class _PlanetViewState extends State<PlanetView> {
       climate = planet['climate'];
       gravity = planet['gravity'];
       films = getData.getDataByLabel(mapsFilms, 'title');
-      print(films);
+
       residents = getData.getDataByLabel(mapsResidents, 'name');
-      print(residents);
+
     });
+    if(FirebaseAuth.instance.currentUser!=null){
+      await _dbTable.orderByChild("planet_user_id").equalTo(name + FirebaseAuth.instance.currentUser
+          .uid).once().then((DataSnapshot data){
+        setState(() {
+          isPressed = (data.value!=null);
+        });
+
+        print(isPressed);
+      });
+    }
+
   }
 
   @override
@@ -49,7 +62,7 @@ class _PlanetViewState extends State<PlanetView> {
 
   @override
   Widget build(BuildContext context) {
-
+    final _dbTable = FirebaseDatabase.instance.reference().child('planets');
     setState(() {
       if(terrain == '') {
         planetUrl = ModalRoute.of(context).settings.arguments;
@@ -96,16 +109,129 @@ class _PlanetViewState extends State<PlanetView> {
                         size: 70,
                       ),
                       FlatButton(
-                          onPressed: () {
-                            setState(() {
-                              //TODO trzeba dodawac warunek czy uzytkownik jest zalogowany
-                              //jesli nie to info zeby sie zalogowal
-                              //jesli tak to zmienia sie przycisk plus dodaje sie pozycja do firebase/ewentualnie usuwa
-                              isPressed = !isPressed;
-                            });
+                          onPressed: () async{
+                            if(FirebaseAuth.instance.currentUser != null){
+                              if(!isPressed && terrain!="") {
+                                dynamic res = await _dbTable.push().set(
+                                    {
+                                      "planet_user_id":name +  FirebaseAuth.instance.currentUser
+                                          .uid
+                                    }).asStream();
+                                if (res == null) {
+                                  Toast.show("Adding unsuccessful", context,
+                                      gravity: Toast.CENTER);
+                                }
+                                else {
+                                  Toast.show("Added successfully", context,
+                                      gravity: Toast.CENTER);
+                                  setState((){
+                                    isPressed = true;
+                                  });
+                                }
+                              }
+                              else if(isPressed && terrain!=""){
+                                await _dbTable.orderByChild("planet_user_id").equalTo(name +  FirebaseAuth.instance.currentUser
+                                    .uid).limitToFirst(1)
+                                    .once().then((DataSnapshot data){
+                                  print(data.value.keys);
+                                  String key = data.value.keys.toString();
+                                  key = key.substring(1,key.length-1);
+                                  print(key);
+                                  _dbTable.child(key).remove();
+                                  setState((){
+                                    isPressed = false;
+                                  });
+                                });
+
+
+                              }
+                            }
+                            else{
+                              Toast.show("Create an account", context,
+                                  gravity: Toast.CENTER);
+                            }                            if(FirebaseAuth.instance.currentUser != null){
+                              if(!isPressed && terrain!="") {
+                                dynamic res = await _dbTable.push().set(
+                                    {
+                                      "planet_user_id": name +  FirebaseAuth.instance.currentUser
+                                          .uid
+                                    }).asStream();
+                                if (res == null) {
+                                  Toast.show("Adding unsuccessful", context,
+                                      gravity: Toast.CENTER);
+                                }
+                                else {
+                                  Toast.show("Added successfully", context,
+                                      gravity: Toast.CENTER);
+                                  setState((){
+                                    isPressed = true;
+                                  });
+                                }
+                              }
+                              else if(isPressed && terrain!=""){
+                                await _dbTable.orderByChild("planet_user_id").equalTo(name +  FirebaseAuth.instance.currentUser
+                                    .uid).limitToFirst(1)
+                                    .once().then((DataSnapshot data){
+                                  print(data.value.keys);
+                                  String key = data.value.keys.toString();
+                                  key = key.substring(1,key.length-1);
+                                  print(key);
+                                  _dbTable.child(key).remove();
+                                  setState((){
+                                    isPressed = false;
+                                  });
+                                });
+
+
+                              }
+                            }
+                            else{
+                              Toast.show("Create an account", context,
+                                  gravity: Toast.CENTER);
+                            }                if(FirebaseAuth.instance.currentUser != null){
+                              if(!isPressed && terrain!="") {
+                                dynamic res = await _dbTable.push().set(
+                                    {
+                                      "planet_user_id": name +  FirebaseAuth.instance.currentUser
+                                          .uid
+                                    }).asStream();
+                                if (res == null) {
+                                  Toast.show("Adding unsuccessful", context,
+                                      gravity: Toast.CENTER);
+                                }
+                                else {
+                                  Toast.show("Added successfully", context,
+                                      gravity: Toast.CENTER);
+                                  setState((){
+                                    isPressed = true;
+                                  });
+                                }
+                              }
+                              else if(isPressed && terrain!=""){
+                                await _dbTable.orderByChild("episode_user_id").equalTo(name +terrain+  FirebaseAuth.instance.currentUser
+                                    .uid).limitToFirst(1)
+                                    .once().then((DataSnapshot data){
+                                  print(data.value.keys);
+                                  String key = data.value.keys.toString();
+                                  key = key.substring(1,key.length-1);
+                                  print(key);
+                                  _dbTable.child(key).remove();
+                                  setState((){
+                                    isPressed = false;
+                                  });
+                                });
+
+
+                              }
+                            }
+                            else{
+                              Toast.show("Create an account", context,
+                                  gravity: Toast.CENTER);
+                            }
                           },
                           child: Icon((isPressed) ? Icons.favorite : Icons.favorite_border,
-                              color: Colors.red,
+                              color: (terrain==""|| FirebaseAuth.instance.currentUser
+                                  ==null)?Colors.grey:Colors.red,
                               size: 40
                           )
                       ),

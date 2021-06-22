@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_in_flutter/services/get_data.dart';
 import 'package:star_wars_in_flutter/views/view_templates.dart';
-
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:toast/toast.dart';
 class ListItemView extends StatefulWidget {
   @override
   _ListItemViewState createState() => _ListItemViewState();
@@ -17,17 +19,66 @@ class _ListItemViewState extends State<ListItemView> {
 
 
 
-  void setupList() async {
-    GetData getData = GetData();
-    //print("SetupList started...");
-    mapList =  await getData.getListOfDataFromAllPages(listUrl);
-    //print("mapList calculated...");
+  void setupList(bool isFav, String category) async {
 
-    setState(() {
-      //print("setState started...");
-      items = getData.getDataByLabel(mapList, label);
-    });
-    //print("SetupList ended...");
+    //print("SetupList started...");
+    final _dbTable = FirebaseDatabase.instance.reference().child(category);
+    String child ='';
+    switch(category) {
+      case 'films':{
+        child = "title_user_id";
+
+      }
+      break;
+      case 'planets':{
+        child = "planet_user_id";
+      }
+      break;
+      default:{
+        child = "person_user_id";
+      }
+    }
+    print(child);
+
+    //print("mapList calculated...");
+    print("setState started...");
+        if(!isFav){
+          GetData getData = GetData();
+          mapList =  await getData.getListOfDataFromAllPages(listUrl);
+          setState(() {
+
+        items = getData.getDataByLabel(mapList, label);
+
+      });
+    }
+    else{
+          List<String> itemsHelp = [];
+      await _dbTable.orderByChild(child).endAt(FirebaseAuth.instance.currentUser.uid)
+          .once().then((DataSnapshot data)async{
+            if(data.value!=null){
+              print(data.value.keys);
+              print(data.value);
+              for (String k in data.value.keys) {
+                dynamic res = await data.value[k];
+                String id = res[child];
+                print(id);
+                print(id.length);
+
+                itemsHelp.add(id.substring(0,id.length-FirebaseAuth.instance.currentUser.uid.length));
+
+              }
+           }
+            else{
+              itemsHelp.add("You have no favourites");
+            }
+      })
+      ;
+      setState(() {
+        items = itemsHelp;
+      });
+    }
+      print("SetupList ended...");
+    // items = getData.getDataByLabel(mapList, label);
   }
 
   @override
@@ -42,10 +93,19 @@ class _ListItemViewState extends State<ListItemView> {
     setState(() {
       if(items.length == 0) {
         argument =  ModalRoute.of(context).settings.arguments ;
-        listUrl = 'https://swapi.dev/api/' + argument + '/?page=';
+        listUrl = argument.startsWith("fav")?
+        'https://swapi.dev/api/' + argument.substring(3) + '/?page=':
+        'https://swapi.dev/api/' + argument + '/?page=';
+        print(listUrl);
 
+        bool isFav = argument.startsWith("fav");
+        print(isFav);
         switch(argument) {
           case "films": {
+            label = 'title';
+          }
+          break;
+          case "favfilms":{
             label = 'title';
           }
           break;
@@ -54,7 +114,7 @@ class _ListItemViewState extends State<ListItemView> {
           }
           break;
         }
-        setupList();
+        setupList(isFav,argument.startsWith("fav")?argument.substring(3):argument);
       }
 
 
@@ -119,6 +179,30 @@ class _ListItemViewState extends State<ListItemView> {
                                       {
                                         Navigator.pushNamed(
                                             context, '/movie_view',
+                                            arguments: mapList[items.indexOf(
+                                                element)]['url']);
+                                      }
+                                      break;
+                                    case "favpeople":
+                                      {
+                                        Navigator.pushNamed(
+                                            context, '/person_view',
+                                            arguments: mapList[items.indexOf(
+                                                element)]['url']);
+                                      }
+                                      break;
+                                    case "favfilms":
+                                      {
+                                        Navigator.pushNamed(
+                                            context, '/movie_view',
+                                            arguments: mapList[items.indexOf(
+                                                element)]['url']);
+                                      }
+                                      break;
+                                    case "favplanets":
+                                      {
+                                        Navigator.pushNamed(
+                                            context, '/planet_view',
                                             arguments: mapList[items.indexOf(
                                                 element)]['url']);
                                       }

@@ -101,7 +101,7 @@ class  _MainMenuState extends State<MainMenu> {
 
                 SizedBox(height: 40),
                 FlatButton(onPressed: () {
-                  Navigator.pushNamed(context,'/list_view',arguments: 'people');
+                  Navigator.pushNamed(context,'/list_view',arguments: 'favpeople');
                 } , color: Colors.grey[800],
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -117,7 +117,7 @@ class  _MainMenuState extends State<MainMenu> {
                 ),
                 SizedBox(height: 20),
                 FlatButton(onPressed: () {
-                  Navigator.pushNamed(context,'/list_view',arguments: 'people');
+                  Navigator.pushNamed(context,'/list_view',arguments: 'favfilms');
                 } , color: Colors.grey[800],
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -133,7 +133,7 @@ class  _MainMenuState extends State<MainMenu> {
                 ),
                 SizedBox(height: 20),
                 FlatButton(onPressed: () {
-                  Navigator.pushNamed(context,'/list_view',arguments: 'people');
+                  Navigator.pushNamed(context,'/list_view',arguments: 'favplanets');
                 } , color: Colors.grey[800],
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
