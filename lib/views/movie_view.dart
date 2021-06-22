@@ -19,7 +19,7 @@ class _MovieViewState extends State<MovieView> {
   String release_date = '';
   List<String> characters = [];
   List<String> planets = [];
-  bool isPressed = false;
+  bool isPressed = false ;
 
 
   void setupMovie() async {
@@ -27,6 +27,7 @@ class _MovieViewState extends State<MovieView> {
     Map movie = await getData.getData(movieUrl);
     List<Map> mapsCharacters = await getData.getListOfData(movie['characters']);
     List<Map> mapsPlanets = await getData.getListOfData(movie['planets']);
+    final _dbTable = FirebaseDatabase.instance.reference().child('films');
 
     // List<Map> proba =  await getData.getListOfDataFromAllPages('https://swapi.dev/api/planets/?page=');
     // print(proba);
@@ -39,7 +40,21 @@ class _MovieViewState extends State<MovieView> {
       release_date = movie['release_date'];
       characters = getData.getDataByLabel(mapsCharacters, 'name');
       planets = getData.getDataByLabel(mapsPlanets, 'name');
+
     });
+    if(FirebaseAuth.instance.currentUser!=null){
+
+    }
+    await _dbTable.orderByChild("episode_user_id").equalTo(episode_id + FirebaseAuth.instance.currentUser
+        .uid).once().then((DataSnapshot data){
+          setState(() {
+            isPressed = (data.value!=null);
+          });
+
+          print(isPressed);
+    });
+
+
   }
 
   @override
@@ -111,10 +126,25 @@ class _MovieViewState extends State<MovieView> {
                                 else {
                                   Toast.show("Added successfully", context,
                                       gravity: Toast.CENTER);
-                                  isPressed = true;
+                                  setState((){
+                                    isPressed = true;
+                                  });
                                 }
                               }
                               else if(isPressed && episode_id!=""){
+                                 await _dbTable.orderByChild("episode_user_id").equalTo(episode_id + FirebaseAuth.instance.currentUser
+                                    .uid).limitToFirst(1)
+                                .once().then((DataSnapshot data){
+                                      print(data.value.keys);
+                                      String key = data.value.keys.toString();
+                                      key = key.substring(1,key.length-1);
+                                      print(key);
+                                    _dbTable.child(key).remove();
+                                      setState((){
+                                        isPressed = false;
+                                      });
+                                });
+
 
                               }
                             }
