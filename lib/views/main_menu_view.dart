@@ -30,6 +30,9 @@ class  _MainMenuState extends State<MainMenu> {
             // Navigator.pushReplacementNamed(context, '/login');
           },
           label: Text('Logout',style: TextStyle(color: Colors.yellow),),
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.grey[800])
+            )
         )
         ],
       ),
