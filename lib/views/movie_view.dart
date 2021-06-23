@@ -210,7 +210,7 @@ class _MovieViewState extends State<MovieView> {
                                 }
                               }
                               else if(isPressed && episode_id!=""){
-                                 await _dbTable.orderByChild("title_user_id").equalTo(episode_id + FirebaseAuth.instance.currentUser
+                                 await _dbTable.orderByChild("title_user_id").equalTo(title + FirebaseAuth.instance.currentUser
                                     .uid).limitToFirst(1)
                                 .once().then((DataSnapshot data){
                                       print(data.value.keys);
