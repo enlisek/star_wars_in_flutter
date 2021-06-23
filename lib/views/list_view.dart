@@ -16,10 +16,15 @@ class _ListItemViewState extends State<ListItemView> {
   String label = 'name';
   List<Map> mapList = [];
   String argument = '' ;
+  bool isFav = false;
+  String category = '';
+  @override
 
 
-
-  void setupList(bool isFav, String category) async {
+  void setupList() async {
+    setState(() {
+      items = [];
+    });
     GetData getData = GetData();
     mapList =  await getData.getListOfDataFromAllPages(listUrl);
     //print("SetupList started...");
@@ -104,7 +109,7 @@ class _ListItemViewState extends State<ListItemView> {
         'https://swapi.dev/api/' + argument + '/?page=';
         print(listUrl);
 
-        bool isFav = argument.startsWith("fav");
+        isFav = argument.startsWith("fav");
         print(isFav);
         switch(argument) {
           case "films": {
@@ -120,7 +125,9 @@ class _ListItemViewState extends State<ListItemView> {
           }
           break;
         }
-        setupList(isFav,argument.startsWith("fav")?argument.substring(3):argument);
+        category = argument.startsWith("fav")?argument.substring(3):argument;
+
+        setupList();
       }
 
 
@@ -162,58 +169,85 @@ class _ListItemViewState extends State<ListItemView> {
                           children: [
                             FlatButton(
                                 onPressed: (){
-                                  switch(argument) {
-                                    case "people":
-                                      {
-                                        Navigator.pushNamed(
-                                            context, '/person_view',
-                                            arguments: mapList[items.indexOf(
-                                                element)]['url']);
-                                      }
-                                      break;
+                                  if(items[0]=="You have no favourites")
+                                    {
 
-                                    case "planets":
-                                      {
-                                        Navigator.pushNamed(
-                                            context, '/planet_view',
-                                            arguments: mapList[items.indexOf(
-                                                element)]['url']);
-                                      }
-                                      break;
+                                    }
+                                  else{
+                                    print(element);
+                                    switch(argument) {
+                                      case "people":
+                                        {
+                                          Navigator.pushNamed(
+                                              context, '/person_view',
+                                              arguments: mapList[items.indexOf(
+                                                  element)]['url']).then((_){
+                                                    setupList();
+                                          });
+                                        }
+                                        break;
 
-                                    case "films":
-                                      {
-                                        Navigator.pushNamed(
-                                            context, '/movie_view',
-                                            arguments: mapList[items.indexOf(
-                                                element)]['url']);
-                                      }
-                                      break;
-                                    case "favpeople":
-                                      {
-                                        Navigator.pushNamed(
-                                            context, '/person_view',
-                                            arguments: mapList[items.indexOf(
-                                                element)]['url']);
-                                      }
-                                      break;
-                                    case "favfilms":
-                                      {
-                                        Navigator.pushNamed(
-                                            context, '/movie_view',
-                                            arguments: mapList[items.indexOf(
-                                                element)]['url']);
-                                      }
-                                      break;
-                                    case "favplanets":
-                                      {
-                                        Navigator.pushNamed(
-                                            context, '/planet_view',
-                                            arguments: mapList[items.indexOf(
-                                                element)]['url']);
-                                      }
-                                      break;
+                                      case "planets":
+                                        {
+                                          Navigator.pushNamed(
+                                              context, '/planet_view',
+                                              arguments: mapList[items.indexOf(
+                                                  element)]['url']);
+                                        }
+                                        break;
+
+                                      case "films":
+                                        {
+                                          Navigator.pushNamed(
+                                              context, '/movie_view',
+                                              arguments: mapList[items.indexOf(
+                                                  element)]['url']);
+                                        }
+                                        break;
+                                      case "favpeople":
+                                        {
+                                          int id = 0;
+                                          for (var el in mapList){
+                                            if(element == el['name'])
+                                            id = mapList.indexOf(el);
+                                          }
+                                          Navigator.pushNamed(
+                                              context, '/person_view',
+                                              arguments: mapList[id]['url']).then((_){
+                                            setupList();
+                                          });;
+                                        }
+                                        break;
+                                      case "favfilms":
+                                        {
+                                          int id = 0;
+                                          for (var el in mapList){
+                                            if(element == el['title'])
+                                              id = mapList.indexOf(el);
+                                          }
+                                          Navigator.pushNamed(
+                                              context, '/movie_view',
+                                              arguments: mapList[id]['url']).then((_){
+                                            setupList();
+                                          });;
+                                        }
+                                        break;
+                                      case "favplanets":
+                                        { int id = 0;
+                                        for (var el in mapList){
+                                          if(element == el['name'])
+                                            id = mapList.indexOf(el);
+                                        }
+                                          Navigator.pushNamed(
+                                              context, '/planet_view',
+                                              arguments: mapList[id]['url']).then((_){
+                                            setupList();
+                                          });;
+                                        }
+                                        break;
+                                    }
                                   }
+
                                   //Navigator.pushNamed(context, MaterialPageRoute(builder: (context) => PersonView('http://swapi.dev/api/people/7/')));
                                 }, //TODO logika do przycisku
                                 child: Row(
