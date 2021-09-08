@@ -8,6 +8,9 @@ class MainMenu1 extends StatelessWidget {
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
         backgroundColor: Colors.yellow[600],
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
         title: Text(
           'Star Wars App',
           style: TextStyle(

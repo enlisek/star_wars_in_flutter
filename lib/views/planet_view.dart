@@ -71,11 +71,10 @@ class _PlanetViewState extends State<PlanetView> {
 
     });
 
-
-
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.yellow[600],
         title: Text(
           'Star Wars App',

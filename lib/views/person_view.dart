@@ -86,6 +86,7 @@ class _PersonViewState extends State<PersonView> {
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
         backgroundColor: Colors.yellow[600],
+        iconTheme: IconThemeData(color: Colors.black),
         title: Text(
             'Star Wars App',
           style: TextStyle(
