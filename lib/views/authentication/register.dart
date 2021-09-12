@@ -140,7 +140,11 @@ class _RegisterState extends State<Register> {
                       width: double.infinity,
                         child: ElevatedButton(
                       style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey[800])),
-                      child: Text('Register', style: TextStyle(color: Colors.yellow, fontSize: 20),),
+                      child: Padding(
+                        padding: const EdgeInsets.all(14.0),
+                        child: Text('Register', style: TextStyle(color: Colors.yellow, fontSize: 20),),
+                      )
+                      ,
                       onPressed: () async {
                         if(_formKey.currentState.validate()){
                           dynamic res =await _authService.register( mail, password,name);

@@ -75,6 +75,7 @@ flutter:
     - family: StarWars
       fonts:
         - asset: fonts/Starjedi.ttf
+
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

@@ -100,8 +100,9 @@ class _SignInState extends State<SignIn> {
                       child: ElevatedButton(
                         style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
                             shape:MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)))),
-                        child: Text('Log in', style: TextStyle(color: Colors.yellow, fontSize: 20)),
-
+                        child: Padding(
+                            padding: const EdgeInsets.all(14.0),
+                            child:Text('Log in', style: TextStyle(color: Colors.yellow, fontSize: 20))),
                         onPressed: ()async{
                           if(_formKey.currentState.validate()){
                             dynamic res =await _authService.login( mail, password);
@@ -131,7 +132,11 @@ class _SignInState extends State<SignIn> {
                   },
                   style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)))),
-                  child: Text('Try it now without account', style: TextStyle(color: Colors.yellow, fontSize: 20)),))
+                  child: Padding(
+                    padding: const EdgeInsets.all(14.0),
+                    child:Text('Try it now without account', style: TextStyle(color: Colors.yellow, fontSize: 20)
+                  )
+                  ),))
 
               ],
             ),
