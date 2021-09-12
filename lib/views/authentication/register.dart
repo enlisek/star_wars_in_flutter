@@ -135,8 +135,10 @@ class _RegisterState extends State<Register> {
                         }
                       },
                     ),
-                    SizedBox(height: 20.0,),
-                    ElevatedButton(
+                    SizedBox(height: 20),
+                    SizedBox(
+                      width: double.infinity,
+                        child: ElevatedButton(
                       style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey[800])),
                       child: Text('Register', style: TextStyle(color: Colors.yellow, fontSize: 20),),
                       onPressed: () async {
@@ -152,7 +154,8 @@ class _RegisterState extends State<Register> {
                           }
                         }
                       },
-                    )
+                    )),
+
                   ],
                 ),
               ),

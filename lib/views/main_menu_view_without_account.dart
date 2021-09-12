@@ -40,7 +40,7 @@ class MainMenu1 extends StatelessWidget {
                   Navigator.pushNamed(context,'/list_view',arguments: 'people');
                 } , color: Colors.grey[800],
                     shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(4),
                   side: BorderSide(
                     color: Colors.grey[900].withOpacity(0.1),
                     width: 3,
@@ -57,7 +57,7 @@ class MainMenu1 extends StatelessWidget {
                 } ,
                     color: Colors.grey[800],
                     shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(4),
                   side: BorderSide(
                     color: Colors.grey[900].withOpacity(0.1),
                     width: 3,
@@ -73,7 +73,7 @@ class MainMenu1 extends StatelessWidget {
                   Navigator.pushNamed(context,'/list_view',arguments: 'planets');
                 } , color: Colors.grey[800],
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(4),
                       side: BorderSide(
                         color: Colors.grey[900].withOpacity(0.1),
                         width: 3,

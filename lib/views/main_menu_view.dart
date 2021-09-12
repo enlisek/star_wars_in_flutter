@@ -57,7 +57,7 @@ class  _MainMenuState extends State<MainMenu> {
                   Navigator.pushNamed(context,'/list_view',arguments: 'people');
                 } , color: Colors.grey[800],
                     shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(4),
                   side: BorderSide(
                     color: Colors.grey[900].withOpacity(0.1),
                     width: 3,
@@ -74,7 +74,7 @@ class  _MainMenuState extends State<MainMenu> {
                 } ,
                     color: Colors.grey[800],
                     shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(4),
                   side: BorderSide(
                     color: Colors.grey[900].withOpacity(0.1),
                     width: 3,
@@ -90,7 +90,7 @@ class  _MainMenuState extends State<MainMenu> {
                   Navigator.pushNamed(context,'/list_view',arguments: 'planets');
                 } , color: Colors.grey[800],
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(4),
                       side: BorderSide(
                         color: Colors.grey[900].withOpacity(0.1),
                         width: 3,
@@ -107,7 +107,7 @@ class  _MainMenuState extends State<MainMenu> {
                   Navigator.pushNamed(context,'/list_view',arguments: 'favpeople');
                 } , color: Colors.grey[800],
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(4),
                       side: BorderSide(
                         color: Colors.grey[900].withOpacity(0.1),
                         width: 3,
@@ -123,7 +123,7 @@ class  _MainMenuState extends State<MainMenu> {
                   Navigator.pushNamed(context,'/list_view',arguments: 'favfilms');
                 } , color: Colors.grey[800],
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(4),
                       side: BorderSide(
                         color: Colors.grey[900].withOpacity(0.1),
                         width: 3,
@@ -139,7 +139,7 @@ class  _MainMenuState extends State<MainMenu> {
                   Navigator.pushNamed(context,'/list_view',arguments: 'favplanets');
                 } , color: Colors.grey[800],
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(4),
                       side: BorderSide(
                         color: Colors.grey[900].withOpacity(0.1),
                         width: 3,

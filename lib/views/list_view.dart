@@ -202,7 +202,7 @@ class _ListItemViewState extends State<ListItemView> {
             ),
             Card(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(4),
                 side: BorderSide(
                   color: Colors.grey.withOpacity(0.2),
                   width: 1,

@@ -94,10 +94,14 @@ class _SignInState extends State<SignIn> {
                         },
                         validator: (val)=>val.length<8?'Password is too short':null ,
                       ),
-                      SizedBox(height: 20.0,),
-                      ElevatedButton(
-                        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey[800])),
+                      SizedBox(height: 20),
+                      SizedBox(
+                        width: double.infinity,
+                      child: ElevatedButton(
+                        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
+                            shape:MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)))),
                         child: Text('Log in', style: TextStyle(color: Colors.yellow, fontSize: 20)),
+
                         onPressed: ()async{
                           if(_formKey.currentState.validate()){
                             dynamic res =await _authService.login( mail, password);
@@ -114,17 +118,21 @@ class _SignInState extends State<SignIn> {
                             }
                           }
                         },
-                      ),
+                      )),
                     ],
                   ),
 
                 ),
-                ElevatedButton(
+                SizedBox(
+                  width: double.infinity,
+                    child: ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(context,'/main_view_model_without_account',arguments: 'people');
                   },
-                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey[800])),
-                  child: Text('Try it now without account', style: TextStyle(color: Colors.yellow, fontSize: 20)),)
+                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)))),
+                  child: Text('Try it now without account', style: TextStyle(color: Colors.yellow, fontSize: 20)),))
+
               ],
             ),
 
