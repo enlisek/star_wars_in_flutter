@@ -57,7 +57,8 @@ class _RegisterState extends State<Register> {
                   children: [
 
                     TextFormField(
-                      style: TextStyle(color: Theme.of(context).accentColor),
+                      cursorColor: Theme.of(context).accentColor,
+                      style: TextStyle(),
                       decoration:  InputDecoration(
                         icon: Icon(Icons.person, color: Theme.of(context).accentColor),
                         labelText: 'Name *',
@@ -73,7 +74,8 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 20.0,),
                     TextFormField(
-                      style: TextStyle(color: Theme.of(context).accentColor),
+                      cursorColor: Theme.of(context).accentColor,
+                      style: TextStyle(),
                       decoration:  InputDecoration(
                         icon: Icon(Icons.email_outlined, color: Theme.of(context).accentColor),
                         labelText: 'Email *',
@@ -93,7 +95,8 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 20.0,),
                     TextFormField(
-                      style: TextStyle(color: Theme.of(context).accentColor),
+                      cursorColor: Theme.of(context).accentColor,
+                      style: TextStyle(),
                       obscureText: true,
                       decoration:  InputDecoration(
                           focusedBorder: InputBorder.none,
@@ -114,7 +117,8 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 20.0,),
                     TextFormField(
-                      style: TextStyle(color: Theme.of(context).accentColor),
+                      cursorColor: Theme.of(context).accentColor,
+                      style: TextStyle(),
                       obscureText: true,
                       decoration:  InputDecoration(
                           focusedBorder: InputBorder.none,

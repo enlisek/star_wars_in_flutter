@@ -62,8 +62,9 @@ class _SignInState extends State<SignIn> {
                       SizedBox(height: 20.0,),
                       TextFormField(
                         style: TextStyle(
-                            color: Theme.of(context).accentColor
+
                         ),
+                        cursorColor: Theme.of(context).accentColor,
                         decoration:  InputDecoration(
                           icon: Icon(Icons.mail_outline, color: Theme.of(context).accentColor,),
                           labelText: 'Email *',
@@ -86,8 +87,9 @@ class _SignInState extends State<SignIn> {
                       SizedBox(height: 20.0,),
                       TextFormField(
                         style: TextStyle(
-                            color: Colors.yellow
+
                         ),
+                        cursorColor: Theme.of(context).accentColor,
                         obscureText: true,
                         decoration:  InputDecoration(
                           focusedBorder: InputBorder.none,

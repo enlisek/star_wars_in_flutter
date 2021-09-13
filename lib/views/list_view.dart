@@ -1,4 +1,5 @@
 import 'package:flappy_search_bar/flappy_search_bar.dart';
+import 'package:flappy_search_bar/search_bar_style.dart';
 import 'package:flutter/material.dart';
 import 'package:star_wars_in_flutter/services/get_data.dart';
 import 'package:star_wars_in_flutter/views/view_templates.dart';
@@ -191,13 +192,18 @@ class _ListItemViewState extends State<ListItemView> {
                     placeHolder: Text("Placeholder"),
                     onCancelled: onCancelled,
                     onSearch: onSearch,
+
                     onItemFound: (String str, int index) {
                       return Center();
                   },
+
                   minimumChars: 0,
-                  icon: Icon(Icons.search, color:Colors.yellow),
-                  textStyle: TextStyle(color: Colors.yellow),
-                  cancellationText: Text("Cancel", style: TextStyle(color: Colors.yellow)),
+                  icon: Icon(Icons.search, color:Theme.of(context).accentColor),
+                  textStyle: TextStyle(),
+
+                  cancellationText: Text("Cancel", style: TextStyle(color: Theme.of(context).accentColor)),
+
+                  searchBarStyle: SearchBarStyle(backgroundColor: Theme.of(context).primaryColor, ),
                 ),
               ),
             ),

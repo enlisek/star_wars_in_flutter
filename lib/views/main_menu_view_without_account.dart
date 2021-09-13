@@ -31,7 +31,7 @@ class MainMenu1 extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: 'StarWars',
                       fontSize: 55,
-                      color: Colors.amberAccent[200],
+                      color: Theme.of(context).accentColor,
                     ),
                   ),
                 ),
