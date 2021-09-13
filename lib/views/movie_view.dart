@@ -76,28 +76,27 @@ class _MovieViewState extends State<MovieView> {
 
 
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      //backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
-        backgroundColor: Colors.yellow[600],
+        iconTheme: IconThemeData(color: Theme.of(context).accentColor),
+        //backgroundColor: Colors.yellow[600],
+        elevation: 0.0,
         title: Text(
           'Star Wars App',
           style: TextStyle(
-              color: Colors.black,
+              color: Theme.of(context).accentColor,
               fontWeight: FontWeight.bold
           ),
         ),
       ),
       body: SingleChildScrollView(
         child: Card(
+          elevation: 0.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(4),
-            side: BorderSide(
-              color: Colors.grey.withOpacity(0.2),
-              width: 1,
-            ),
+
           ),
-          color: Colors.grey[800],
+          color: Theme.of(context).buttonColor,
           margin: EdgeInsets.fromLTRB(16,20,16,20),
           child: Padding(
             padding: EdgeInsets.all(20),

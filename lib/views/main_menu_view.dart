@@ -16,6 +16,7 @@ class  _MainMenuState extends State<MainMenu> {
 
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
+        elevation: 0.0,
         title: Text(
           'Star Wars App',
           style: TextStyle(
@@ -58,10 +59,7 @@ class  _MainMenuState extends State<MainMenu> {
                 } , color: Theme.of(context).buttonColor,
                     shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
-                  side: BorderSide(
-                    color: Colors.grey[900].withOpacity(0.1),
-                    width: 3,
-                  ),
+
                 ),
                   child: Padding(
                     padding: const EdgeInsets.all(14.0),
@@ -75,10 +73,7 @@ class  _MainMenuState extends State<MainMenu> {
                     color: Theme.of(context).buttonColor,
                     shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
-                  side: BorderSide(
-                    color: Colors.grey[900].withOpacity(0.1),
-                    width: 3,
-                  ),
+
                 ),
                     child: Padding(
                       padding: const EdgeInsets.all(14.0),
@@ -91,10 +86,7 @@ class  _MainMenuState extends State<MainMenu> {
                 } , color: Theme.of(context).buttonColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
-                      side: BorderSide(
-                        color: Colors.grey[900].withOpacity(0.1),
-                        width: 3,
-                      ),
+
                     ),
                   child: Padding(
                     padding: const EdgeInsets.all(14.0),
@@ -108,10 +100,7 @@ class  _MainMenuState extends State<MainMenu> {
                 } , color: Theme.of(context).buttonColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
-                      side: BorderSide(
-                        color: Colors.grey[900].withOpacity(0.1),
-                        width: 3,
-                      ),
+
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(14.0),
@@ -124,10 +113,7 @@ class  _MainMenuState extends State<MainMenu> {
                 } , color: Theme.of(context).buttonColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
-                      side: BorderSide(
-                        color: Colors.grey[900].withOpacity(0.1),
-                        width: 3,
-                      ),
+
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(14.0),
@@ -140,10 +126,7 @@ class  _MainMenuState extends State<MainMenu> {
                 } , color: Theme.of(context).buttonColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
-                      side: BorderSide(
-                        color: Colors.grey[900].withOpacity(0.1),
-                        width: 3,
-                      ),
+
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(14.0),

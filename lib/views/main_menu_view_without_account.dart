@@ -5,16 +5,16 @@ class MainMenu1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      //backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        backgroundColor: Colors.yellow[600],
-        iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
+        //backgroundColor: Colors.yellow[600],
+        elevation: 0.0,
+        iconTheme: IconThemeData(color: Theme.of(context).accentColor, //change your color here
         ),
         title: Text(
           'Star Wars App',
           style: TextStyle(
-              color: Colors.black,
+              color: Theme.of(context).accentColor,
               fontWeight: FontWeight.bold
           ),
         ),
@@ -38,13 +38,10 @@ class MainMenu1 extends StatelessWidget {
                 SizedBox(height: 70),
                 FlatButton(onPressed: () {
                   Navigator.pushNamed(context,'/list_view',arguments: 'people');
-                } , color: Colors.grey[800],
+                } , color: Theme.of(context).buttonColor,
                     shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
-                  side: BorderSide(
-                    color: Colors.grey[900].withOpacity(0.1),
-                    width: 3,
-                  ),
+
                 ),
                   child: Padding(
                     padding: const EdgeInsets.all(14.0),
@@ -55,13 +52,10 @@ class MainMenu1 extends StatelessWidget {
                 FlatButton(onPressed: () {
                   Navigator.pushNamed(context,'/list_view',arguments: 'films');
                 } ,
-                    color: Colors.grey[800],
+                    color: Theme.of(context).buttonColor,
                     shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
-                  side: BorderSide(
-                    color: Colors.grey[900].withOpacity(0.1),
-                    width: 3,
-                  ),
+
                 ),
                     child: Padding(
                       padding: const EdgeInsets.all(14.0),
@@ -71,13 +65,10 @@ class MainMenu1 extends StatelessWidget {
                 SizedBox(height: 20),
                 FlatButton(onPressed: () {
                   Navigator.pushNamed(context,'/list_view',arguments: 'planets');
-                } , color: Colors.grey[800],
+                } , color: Theme.of(context).buttonColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
-                      side: BorderSide(
-                        color: Colors.grey[900].withOpacity(0.1),
-                        width: 3,
-                      ),
+
                     ),
                   child: Padding(
                     padding: const EdgeInsets.all(14.0),

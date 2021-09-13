@@ -166,14 +166,15 @@ class _ListItemViewState extends State<ListItemView> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      //backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        backgroundColor: Colors.yellow[600],
-        iconTheme: IconThemeData(color: Colors.black),
+        //backgroundColor: Colors.yellow[600],
+        elevation: 0,
+        iconTheme: IconThemeData(color: Theme.of(context).accentColor),
         title: Text(
           'Star Wars App',
           style: TextStyle(
-              color: Colors.black,
+              color: Theme.of(context).accentColor,
               fontWeight: FontWeight.bold
           ),
         ),
@@ -203,12 +204,10 @@ class _ListItemViewState extends State<ListItemView> {
             Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4),
-                side: BorderSide(
-                  color: Colors.grey.withOpacity(0.2),
-                  width: 1,
-                ),
+
               ),
-              color: Colors.grey[800],
+              elevation: 0.0,
+              color: Theme.of(context).buttonColor,
               margin: EdgeInsets.fromLTRB(20,0,20,30),
               child: Padding(
                 padding: EdgeInsets.all(20),

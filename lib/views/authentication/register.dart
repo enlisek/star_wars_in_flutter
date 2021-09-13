@@ -25,7 +25,8 @@ class _RegisterState extends State<Register> {
 
         // backgroundColor:  Colors.grey[900],
         appBar: AppBar(
-          backgroundColor: Theme.of(context).primaryColor,
+          //backgroundColor: Theme.of(context).primaryColor,
+          elevation: 0,
           title: Text('Register', style: TextStyle(
               color: Theme.of(context).accentColor,
               fontWeight: FontWeight.bold),
@@ -139,7 +140,9 @@ class _RegisterState extends State<Register> {
                     SizedBox(
                       width: double.infinity,
                         child: ElevatedButton(
-                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Theme.of(context).buttonColor)),
+                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Theme.of(context).buttonColor),
+                          elevation:MaterialStateProperty.all<double>(0),
+                          shape:MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)))),
                       child: Padding(
                         padding: const EdgeInsets.all(14.0),
                         child: Text('Register', style: TextStyle(color: Theme.of(context).accentColor, fontSize: 20),),

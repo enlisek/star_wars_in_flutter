@@ -27,6 +27,7 @@ class _SignInState extends State<SignIn> {
       // backgroundColor:Colors.grey[900],
       appBar: AppBar(
         // backgroundColor: Colors.yellow,
+        elevation: 0,
         title: Text('Log in',
             style: TextStyle(
              color: Theme.of(context).accentColor,
@@ -112,6 +113,7 @@ class _SignInState extends State<SignIn> {
                       child: ElevatedButton(
                         style: ButtonStyle(
                              backgroundColor: MaterialStateProperty.all(Theme.of(context).buttonColor),
+                            elevation:MaterialStateProperty.all<double>(0),
                             shape:MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)))),
                         child: Padding(
                             padding: const EdgeInsets.all(14.0),
@@ -148,6 +150,7 @@ class _SignInState extends State<SignIn> {
                   },
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Theme.of(context).buttonColor),
+                      elevation:MaterialStateProperty.all<double>(0),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)))),
                   child: Padding(
                     padding: const EdgeInsets.all(14.0),
