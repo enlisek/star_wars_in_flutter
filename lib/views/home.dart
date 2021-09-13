@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:star_wars_in_flutter/views/person_view.dart';
 import 'package:star_wars_in_flutter/views/planet_view.dart';
 
+import '../custom_themes.dart';
 import 'authentication/login.dart';
 import 'list_view.dart';
 import 'main_menu_view.dart';
@@ -29,6 +30,8 @@ class _HomeState extends State<Home> {
         '/main_menu' : (context) => MainMenu()
 
       },
+      theme: MyThemes.lightTheme,
+      darkTheme: MyThemes.darkTheme,
     );
   }
 }

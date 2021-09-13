@@ -24,23 +24,25 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      backgroundColor:Colors.grey[900],
+      // backgroundColor:Colors.grey[900],
       appBar: AppBar(
-        backgroundColor: Colors.yellow,
+        // backgroundColor: Colors.yellow,
         title: Text('Log in',
             style: TextStyle(
-            color: Colors.black,
+             color: Theme.of(context).accentColor,
             fontWeight: FontWeight.bold
         ),),
         actions: <Widget>[
           ElevatedButton.icon(
-            icon: Icon(Icons.account_box_outlined, color:Colors.yellow,),
+            icon: Icon(Icons.account_box_outlined,color: Theme.of(context).accentColor,),
             onPressed:(){
               Navigator.pushReplacementNamed(context, '/register');
             },
-            label: Text('Register',style: TextStyle(color: Colors.yellow),),
+            label: Text('Register',
+              style: TextStyle(color: Theme.of(context).accentColor),
+            ),
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.grey[800])
+              backgroundColor: MaterialStateProperty.all(Theme.of(context).buttonColor)
             )
             ),
           ]
@@ -58,11 +60,15 @@ class _SignInState extends State<SignIn> {
                     children: [
                       SizedBox(height: 20.0,),
                       TextFormField(
-                        style: TextStyle(color: Colors.yellow),
-                        decoration: const InputDecoration(
-                          icon: Icon(Icons.mail_outline, color: Colors.yellow),
+                        style: TextStyle(
+                            color: Theme.of(context).accentColor
+                        ),
+                        decoration:  InputDecoration(
+                          icon: Icon(Icons.mail_outline, color: Theme.of(context).accentColor,),
                           labelText: 'Email *',
-                          labelStyle:  TextStyle(color: Colors.yellow),
+                          labelStyle:  TextStyle(
+                              // color: Colors.yellow
+                          ),
                         ),
                         onChanged: (val){
                           setState(() {
@@ -78,14 +84,20 @@ class _SignInState extends State<SignIn> {
                       ),
                       SizedBox(height: 20.0,),
                       TextFormField(
-                        style: TextStyle(color: Colors.yellow),
+                        style: TextStyle(
+                            color: Colors.yellow
+                        ),
                         obscureText: true,
-                        decoration: const InputDecoration(
+                        decoration:  InputDecoration(
                           focusedBorder: InputBorder.none,
 
-                          icon: Icon(Icons.vpn_key, color: Colors.yellow,),
+                          icon: Icon(Icons.vpn_key,
+                            color: Theme.of(context).accentColor,
+                          ),
                           labelText: 'Password *',
-                          labelStyle:  TextStyle(color: Colors.yellow),
+                          labelStyle:  TextStyle(
+                               // color: Colors.yellow
+                          ),
                         ),
                         onChanged: (val){
                           setState(() {
@@ -98,11 +110,15 @@ class _SignInState extends State<SignIn> {
                       SizedBox(
                         width: double.infinity,
                       child: ElevatedButton(
-                        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
+                        style: ButtonStyle(
+                             backgroundColor: MaterialStateProperty.all(Theme.of(context).buttonColor),
                             shape:MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)))),
                         child: Padding(
                             padding: const EdgeInsets.all(14.0),
-                            child:Text('Log in', style: TextStyle(color: Colors.yellow, fontSize: 20))),
+                            child:Text('Log in',
+                                style: TextStyle(
+                                     color: Theme.of(context).accentColor,
+                                    fontSize: 20))),
                         onPressed: ()async{
                           if(_formKey.currentState.validate()){
                             dynamic res =await _authService.login( mail, password);
@@ -130,11 +146,15 @@ class _SignInState extends State<SignIn> {
                   onPressed: () {
                     Navigator.pushNamed(context,'/main_view_model_without_account',arguments: 'people');
                   },
-                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey[800]),
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Theme.of(context).buttonColor),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)))),
                   child: Padding(
                     padding: const EdgeInsets.all(14.0),
-                    child:Text('Try it now without account', style: TextStyle(color: Colors.yellow, fontSize: 20)
+                    child:Text('Try it now without account',
+                        style: TextStyle(
+                             color: Theme.of(context).accentColor,
+                            fontSize: 20)
                   )
                   ),))
 

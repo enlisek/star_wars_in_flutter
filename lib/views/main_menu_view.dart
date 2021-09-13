@@ -13,25 +13,25 @@ class  _MainMenuState extends State<MainMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+
       appBar: AppBar(
-        backgroundColor: Colors.yellow[600],
+        backgroundColor: Theme.of(context).primaryColor,
         title: Text(
           'Star Wars App',
           style: TextStyle(
-              color: Colors.black,
+              color: Theme.of(context).accentColor,
               fontWeight: FontWeight.bold
           ),
         ),
         actions: <Widget>[ElevatedButton.icon(
-          icon: Icon(Icons.account_box_outlined, color:Colors.yellow,),
+          icon: Icon(Icons.account_box_outlined, color:Theme.of(context).accentColor,),
           onPressed:() async{
             await _authService.signOut();
             // Navigator.pushReplacementNamed(context, '/login');
           },
-          label: Text('Logout',style: TextStyle(color: Colors.yellow),),
+          label: Text('Logout',style: TextStyle(color: Theme.of(context).accentColor),),
             style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.grey[800])
+                backgroundColor: MaterialStateProperty.all(Theme.of(context).buttonColor)
             )
         )
         ],
@@ -48,14 +48,14 @@ class  _MainMenuState extends State<MainMenu> {
                     style: TextStyle(
                       fontFamily: 'StarWars',
                       fontSize: 55,
-                      color: Colors.amberAccent[200],
+                      color: Theme.of(context).accentColor,
                     ),
                   ),
                 ),
                 SizedBox(height: 70),
                 FlatButton(onPressed: () {
                   Navigator.pushNamed(context,'/list_view',arguments: 'people');
-                } , color: Colors.grey[800],
+                } , color: Theme.of(context).buttonColor,
                     shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
                   side: BorderSide(
@@ -72,7 +72,7 @@ class  _MainMenuState extends State<MainMenu> {
                 FlatButton(onPressed: () {
                   Navigator.pushNamed(context,'/list_view',arguments: 'films');
                 } ,
-                    color: Colors.grey[800],
+                    color: Theme.of(context).buttonColor,
                     shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
                   side: BorderSide(
@@ -88,7 +88,7 @@ class  _MainMenuState extends State<MainMenu> {
                 SizedBox(height: 20),
                 FlatButton(onPressed: () {
                   Navigator.pushNamed(context,'/list_view',arguments: 'planets');
-                } , color: Colors.grey[800],
+                } , color: Theme.of(context).buttonColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
                       side: BorderSide(
@@ -105,7 +105,7 @@ class  _MainMenuState extends State<MainMenu> {
                 SizedBox(height: 40),
                 FlatButton(onPressed: () {
                   Navigator.pushNamed(context,'/list_view',arguments: 'favpeople');
-                } , color: Colors.grey[800],
+                } , color: Theme.of(context).buttonColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
                       side: BorderSide(
@@ -121,7 +121,7 @@ class  _MainMenuState extends State<MainMenu> {
                 SizedBox(height: 20),
                 FlatButton(onPressed: () {
                   Navigator.pushNamed(context,'/list_view',arguments: 'favfilms');
-                } , color: Colors.grey[800],
+                } , color: Theme.of(context).buttonColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
                       side: BorderSide(
@@ -137,7 +137,7 @@ class  _MainMenuState extends State<MainMenu> {
                 SizedBox(height: 20),
                 FlatButton(onPressed: () {
                   Navigator.pushNamed(context,'/list_view',arguments: 'favplanets');
-                } , color: Colors.grey[800],
+                } , color: Theme.of(context).buttonColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4),
                       side: BorderSide(

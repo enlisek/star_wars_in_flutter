@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:star_wars_in_flutter/custom_themes.dart';
 import 'package:star_wars_in_flutter/views/authentication/register.dart';
 import 'package:star_wars_in_flutter/views/main_menu_view_without_account.dart';
 
@@ -26,6 +27,8 @@ class _AuthenticateState extends State<Authenticate> {
 
     return MaterialApp(
         initialRoute: '/login',
+        theme: MyThemes.lightTheme,
+        darkTheme: MyThemes.darkTheme,
         routes: {
         // '/person_view' : (BuildContext context) => PersonView(),
         // '/planet_view' : (context) => PlanetView(),

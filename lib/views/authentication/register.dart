@@ -23,23 +23,23 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-        backgroundColor:  Colors.grey[900],
+        // backgroundColor:  Colors.grey[900],
         appBar: AppBar(
-          backgroundColor: Colors.yellow,
+          backgroundColor: Theme.of(context).primaryColor,
           title: Text('Register', style: TextStyle(
-              color: Colors.black,
+              color: Theme.of(context).accentColor,
               fontWeight: FontWeight.bold),
           ),
           actions: <Widget>[
             ElevatedButton.icon(
 
-              icon: Icon(Icons.account_box_outlined, color: Colors.yellow,),
+              icon: Icon(Icons.account_box_outlined, color: Theme.of(context).accentColor,),
               onPressed:(){
                 Navigator.pushReplacementNamed(context, '/login');
               },
-              label: Text('Login',style: TextStyle(color: Colors.yellow)),
+              label: Text('Login',style: TextStyle(color: Theme.of(context).accentColor)),
                 style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.grey[800])
+                    backgroundColor: MaterialStateProperty.all(Theme.of(context).buttonColor)
                 )
             )
           ],
@@ -56,11 +56,11 @@ class _RegisterState extends State<Register> {
                   children: [
 
                     TextFormField(
-                      style: TextStyle(color: Colors.yellow),
-                      decoration: const InputDecoration(
-                        icon: Icon(Icons.person, color: Colors.yellow),
+                      style: TextStyle(color: Theme.of(context).accentColor),
+                      decoration:  InputDecoration(
+                        icon: Icon(Icons.person, color: Theme.of(context).accentColor),
                         labelText: 'Name *',
-                        labelStyle:  TextStyle(color: Colors.yellow),
+                        // labelStyle:  TextStyle(color: Theme.of(context).accentColor),
                       ),
                       onChanged: (val){
                         setState(() {
@@ -72,11 +72,11 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 20.0,),
                     TextFormField(
-                      style: TextStyle(color: Colors.yellow),
-                      decoration: const InputDecoration(
-                        icon: Icon(Icons.email_outlined, color: Colors.yellow),
+                      style: TextStyle(color: Theme.of(context).accentColor),
+                      decoration:  InputDecoration(
+                        icon: Icon(Icons.email_outlined, color: Theme.of(context).accentColor),
                         labelText: 'Email *',
-                        labelStyle:  TextStyle(color: Colors.yellow),
+                        // labelStyle:  TextStyle(color: Theme.of(context).accentColor),
                       ),
                       onChanged: (val){
                         setState(() {
@@ -92,12 +92,12 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 20.0,),
                     TextFormField(
-                      style: TextStyle(color: Colors.yellow),
+                      style: TextStyle(color: Theme.of(context).accentColor),
                       obscureText: true,
-                      decoration: const InputDecoration(
+                      decoration:  InputDecoration(
                           focusedBorder: InputBorder.none,
-                          labelStyle:  TextStyle(color: Colors.yellow),
-                          icon: Icon(Icons.vpn_key, color: Colors.yellow,),
+                          // labelStyle:  TextStyle(color: Theme.of(context).accentColor),
+                          icon: Icon(Icons.vpn_key, color: Theme.of(context).accentColor,),
                           labelText: 'Password *'
                       ),
                       onChanged: (val){
@@ -113,12 +113,12 @@ class _RegisterState extends State<Register> {
                     ),
                     SizedBox(height: 20.0,),
                     TextFormField(
-                      style: TextStyle(color: Colors.yellow),
+                      style: TextStyle(color: Theme.of(context).accentColor),
                       obscureText: true,
-                      decoration: const InputDecoration(
+                      decoration:  InputDecoration(
                           focusedBorder: InputBorder.none,
-                          labelStyle:  TextStyle(color: Colors.yellow),
-                          icon: Icon(Icons.vpn_key, color: Colors.yellow,),
+                          // labelStyle:  TextStyle(color: Theme.of(context).accentColor),
+                          icon: Icon(Icons.vpn_key, color: Theme.of(context).accentColor,),
                           labelText: 'Repeat password *'
                       ),
                       onChanged: (val){
@@ -139,10 +139,10 @@ class _RegisterState extends State<Register> {
                     SizedBox(
                       width: double.infinity,
                         child: ElevatedButton(
-                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey[800])),
+                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Theme.of(context).buttonColor)),
                       child: Padding(
                         padding: const EdgeInsets.all(14.0),
-                        child: Text('Register', style: TextStyle(color: Colors.yellow, fontSize: 20),),
+                        child: Text('Register', style: TextStyle(color: Theme.of(context).accentColor, fontSize: 20),),
                       )
                       ,
                       onPressed: () async {
